@@ -1,0 +1,20 @@
+﻿<Window x:Class="Aldi.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Aldi"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <DataTemplate x:Key="example" DataType="{x:Type local:StringProperty}">
+            <local:StringPropertyView DataContext="{Binding test1}" /> <!--This is one property of the Context which got assigned at the ContentPresenter -->
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.DataContext>
+            <local:StringProperty></local:StringProperty>
+        </Grid.DataContext>
+        <ContentPresenter DataContext="{Binding DataContext,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" ContentTemplate="{StaticResource example}"/>
+    </Grid>
+</Window>
